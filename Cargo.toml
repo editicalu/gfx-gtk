@@ -1,9 +1,9 @@
 [package]
 name = "gfx-gtk"
 version = "0.3.0"
-authors = ["Nicola Orru <nigu.orru@gmail.com>"]
+authors = ["Nicola Orru <nigu.orru@gmail.com>", "Ward Segers <w@rdsegers.be>"]
 keywords = ["gfx", "gtk", "glarea", "epoxy", "opengl"]
-#edition = "2018"
+edition = "2018"
 description = "Integration helper for embedding GFX rendering in a gtk::GlArea"
 repository = "https://github.com/itadinanta/gfx-gtk"
 license = "Apache-2.0"
@@ -18,11 +18,11 @@ path="src/lib.rs"
 libc = "0.2"
 epoxy = "0.1.0"
 shared_library = "0.1"
-gtk = { version = "0.5", features=["v3_16"] }
-gdk = { version = "0.9", features=["v3_16"] }
+gtk = { version = "0.8.1", features=["v3_18"] }
+gdk = { version = "0.12.1", features=["v3_18"] }
 gl = "0.10"
-gfx = "0.17"
-gfx_device_gl = "0.15"
+gfx = "0.18"
+gfx_device_gl = "0.16.2"
 
 [dev-dependencies]
 cgmath = "0.16"
