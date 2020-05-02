@@ -10,14 +10,14 @@
 //!
 //! ## Add the Cargo dependencies
 //!
-//! ```
+//! ```text
 //! [dependencies]
 //! gfx_gtk = "0.3"
 //! ```
 //!
 //! ## Import crate and packages
 //!
-//! ```
+//! ```text
 //! extern crate gfx_gtk;
 //!
 //! use gfx_gtk::formats;
@@ -26,7 +26,7 @@
 //!
 //! ## Choose some render formats and AA mode
 //!
-//! ```
+//! ```text
 //! const MSAA: gfx::texture::AaMode = formats::MSAA_4X;
 //! type RenderColorFormat = formats::DefaultRenderColorFormat;
 //! type RenderDepthFormat = formats::DefaultRenderDepthFormat;
@@ -37,7 +37,7 @@
 //! You need to implement [GlRenderCallback] and [GlPostprocessCallback] traits (the latter
 //! can be made to use the default implementation)
 //!
-//! ```
+//! ```text
 //! struct SimpleRenderCallback {
 //! 	...
 //! }
@@ -60,7 +60,7 @@
 //!
 //! ### Load Gl functions
 //!
-//! ```
+//! ```text
 //! gfx_gtk::load();
 //!
 //! ```
@@ -72,7 +72,7 @@
 //! and [GlRenderCallback] must be created in the closure that gets attached to `GlArea::connect_realize()` after
 //! the `make_current()` call (otherwise it won't be possible to "bind" to the current `GlArea` Gl context
 //!
-//! ```
+//! ```text
 //!
 //!	let gfx_context: Rc<RefCell<Option<GlRenderContext<RenderColorFormat, RenderDepthFormat>>>> = Rc::new(RefCell::new(None));
 //!
@@ -80,7 +80,7 @@
 //!
 //!	let glarea = gtk::GLArea::new();
 //!
-//!	glarea.connect_realize({
+//!	glarea.connect_realize(move || {
 //!		let gfx_context = gfx_context.clone();
 //!		let render_callback = render_callback.clone();
 //!
@@ -106,7 +106,7 @@
 //!		}
 //!	});
 //!
-//!	glarea.connect_resize({
+//!	glarea.connect_resize(move || {
 //!		let gfx_context = gfx_context.clone();
 //!		let render_callback = render_callback.clone();
 //!
@@ -119,7 +119,7 @@
 //!		}
 //!	});
 //!
-//!	glarea.connect_render({
+//!	glarea.connect_render(move || {
 //!		let gfx_context = gfx_context.clone();
 //!		let render_callback = render_callback.clone();
 //!
@@ -205,13 +205,13 @@ pub mod formats {
     pub const MSAA_4X: gfx::texture::AaMode = gfx::texture::AaMode::Multi(4);
 }
 
-/// Post-processing gfx vertex structure
+// Post-processing gfx vertex structure
 gfx_vertex_struct!(BlitVertex {
     pos: [f32; 2] = "a_Pos",
     tex_coord: [f32; 2] = "a_TexCoord",
 });
 
-/// Post-processing gfx pipeline definitions
+// Post-processing gfx pipeline definitions
 gfx_pipeline!(postprocess {
         vbuf: gfx::VertexBuffer<BlitVertex> = (),
         src: gfx::TextureSampler<formats::GtkTargetColorView> = "t_Source",

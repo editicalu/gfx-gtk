@@ -1,6 +1,6 @@
 [package]
 name = "gfx-gtk"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["Nicola Orru <nigu.orru@gmail.com>", "Ward Segers <w@rdsegers.be>"]
 keywords = ["gfx", "gtk", "glarea", "epoxy", "opengl"]
 edition = "2018"

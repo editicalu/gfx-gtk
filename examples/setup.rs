@@ -13,7 +13,7 @@ use gfx::traits::FactoryExt;
 use gfx_gtk::formats;
 use gfx_gtk::GlRenderContext;
 use gtk::traits::*;
-use gtk::{Inhibit, ObjectExt, Window};
+use gtk::{Inhibit, Window};
 use std::cell::RefCell;
 use std::rc::Rc;
 
@@ -291,12 +291,13 @@ pub fn main() {
 
     let slider = gtk::Scale::new_with_range(gtk::Orientation::Horizontal, -75.0, 75.0, 0.1);
     slider.set_value(0.0);
+    let glarea_copy = glarea.clone();
     slider.connect_value_changed({
         let render_callback = render_callback.clone();
         move |widget| {
             if let Some(ref mut render_callback) = *render_callback.borrow_mut() {
                 render_callback.model_yaw = cgmath::Deg(widget.get_value() as f32);
-                glarea.queue_draw();
+                glarea_copy.queue_draw();
             }
         }
     });
